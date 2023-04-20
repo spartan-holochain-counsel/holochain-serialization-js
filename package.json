@@ -1,0 +1,36 @@
+{
+  "name": "@whi/holochain-serialization",
+  "version": "0.1.0",
+  "description": "A Javascript library for signing Holochain zome call input",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "browser": "dist/holochain-serialization.js",
+  "files": [
+    "README.md",
+    "src/index.js",
+    "dist/**"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Brisebois <matthew@webheroes.ca>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjbrisebois/holochain-websocket-js/"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "^2.7.0",
+    "blake2b": "^2.1.4"
+  },
+  "devDependencies": {
+    "@holochain/serialization": "0.1.0-beta-rc.3",
+    "@whi/holo-hash": "^0.4.3",
+    "@whi/weblogger": "^0.1.6",
+    "chai": "^4.3.4",
+    "mocha": "^10.1.0",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^4.7.2"
+  }
+}
