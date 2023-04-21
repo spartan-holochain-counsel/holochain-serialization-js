@@ -77,11 +77,6 @@ const digest = hashZomeCall( zome_call_request );
     hash,
     serializeZomeCall,
     hashZomeCall,
-
-    // Forwarded from blake2b
     blake2b,
-
-    // Forwarded from @msgpack/msgpack
-    MsgPack,
 }
 ```

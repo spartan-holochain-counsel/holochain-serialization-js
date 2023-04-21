@@ -1,7 +1,6 @@
 
 import { encode }			from '@msgpack/msgpack';
-import * as MsgPack			from '@msgpack/msgpack';
-import blake2b				from 'blake2b';
+import { blake2b }			from './blake2b.js';
 
 
 export function serialize ( input ) {
@@ -14,9 +13,7 @@ export function hash ( bytes ) {
     if ( !(bytes instanceof Uint8Array) )
 	bytes				= serialize( bytes );
 
-    const hash				= blake2b( 256/8 );
-    hash.update( bytes );
-    return hash.digest();
+    return blake2b( bytes );
 }
 
 
@@ -53,10 +50,5 @@ export default {
     hash,
     serializeZomeCall,
     hashZomeCall,
-
-    // Forwarded from blake2b
     blake2b,
-
-    // Forwarding @msgpack/msgpack
-    MsgPack,
 };

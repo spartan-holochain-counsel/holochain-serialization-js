@@ -18,11 +18,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mjbrisebois/holochain-websocket-js/"
+    "url": "https://github.com/mjbrisebois/holochain-serialization-js/"
   },
   "dependencies": {
-    "@msgpack/msgpack": "^2.7.0",
-    "blake2b": "^2.1.4"
+    "@msgpack/msgpack": "^2.7.0"
   },
   "devDependencies": {
     "@holochain/serialization": "0.1.0-beta-rc.3",
