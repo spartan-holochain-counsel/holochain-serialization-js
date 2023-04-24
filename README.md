@@ -28,8 +28,10 @@ npm i @whi/holochain-serialization
 
 ```javascript
 import crypto from 'crypto';
+import { encode } from '@msgpack/msgpack';
 import { AgentPubKey, DnaHash } from '@whi/holo-hash';
-import { hashZomeCall, encode } from '@whi/holochain-serialization';
+import { hashZomeCall } from '@whi/holochain-serialization';
+
 import ed25519 from 'some_ed25519_library'; // Not a real ed25519 library
 
 

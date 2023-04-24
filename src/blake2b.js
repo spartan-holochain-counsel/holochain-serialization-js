@@ -1,6 +1,7 @@
 // Blake2B in pure Javascript
 // Adapted from the reference implementation in RFC7693
 // Ported to Javascript by DC - https://github.com/dcposch
+// Source - https://github.com/dcposch/blakejs/blob/master/blake2s.js
 
 
 // 64-bit unsigned addition
