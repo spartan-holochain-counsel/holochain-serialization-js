@@ -1,11 +1,11 @@
-[![](https://img.shields.io/npm/v/@whi/holochain-serialization/latest?style=flat-square)](http://npmjs.com/package/@whi/holochain-serialization)
+[![](https://img.shields.io/npm/v/@spartan-hc/holochain-serialization/latest?style=flat-square)](http://npmjs.com/package/@spartan-hc/holochain-serialization)
 
 # Holochain Serialization
 A (pure) Javascript library for signing [Holochain](https://holochain.org) zome call input.
 
-[![](https://img.shields.io/github/issues-raw/mjbrisebois/holochain-serialization-js?style=flat-square)](https://github.com/mjbrisebois/holochain-serialization-js/issues)
-[![](https://img.shields.io/github/issues-closed-raw/mjbrisebois/holochain-serialization-js?style=flat-square)](https://github.com/mjbrisebois/holochain-serialization-js/issues?q=is%3Aissue+is%3Aclosed)
-[![](https://img.shields.io/github/issues-pr-raw/mjbrisebois/holochain-serialization-js?style=flat-square)](https://github.com/mjbrisebois/holochain-serialization-js/pulls)
+[![](https://img.shields.io/github/issues-raw/spartan-holochain-counsel/holochain-serialization-js?style=flat-square)](https://github.com/spartan-holochain-counsel/holochain-serialization-js/issues)
+[![](https://img.shields.io/github/issues-closed-raw/spartan-holochain-counsel/holochain-serialization-js?style=flat-square)](https://github.com/spartan-holochain-counsel/holochain-serialization-js/issues?q=is%3Aissue+is%3Aclosed)
+[![](https://img.shields.io/github/issues-pr-raw/spartan-holochain-counsel/holochain-serialization-js?style=flat-square)](https://github.com/spartan-holochain-counsel/holochain-serialization-js/pulls)
 
 
 ## Overview
@@ -21,7 +21,7 @@ A (pure) Javascript library for signing [Holochain](https://holochain.org) zome 
 ## Install
 
 ```bash
-npm i @whi/holochain-serialization
+npm i @spartan-hc/holochain-serialization
 ```
 
 ## Basic Usage
@@ -29,8 +29,8 @@ npm i @whi/holochain-serialization
 ```javascript
 import crypto from 'crypto';
 import { encode } from '@msgpack/msgpack';
-import { AgentPubKey, DnaHash } from '@whi/holo-hash';
-import { hashZomeCall } from '@whi/holochain-serialization';
+import { AgentPubKey, DnaHash } from '@spartan-hc/holo-hash';
+import { hashZomeCall } from '@spartan-hc/holochain-serialization';
 
 import ed25519 from 'some_ed25519_library'; // Not a real ed25519 library
 

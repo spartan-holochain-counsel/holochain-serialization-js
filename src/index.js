@@ -3,10 +3,23 @@ import { encode }			from '@msgpack/msgpack';
 import { blake2b }			from './blake2b.js';
 
 
-export function serialize ( input ) {
-    return encode( input, {
-	"sortKeys": true,
-    });
+export function serialize ( input, key_order ) {
+    if ( key_order )
+	return serializeKeyOrder( input, key_order );
+    else
+	return encode( input, {
+	    "sortKeys": true,
+	});
+}
+
+export function serializeKeyOrder ( input, key_order ) {
+    const ordered_input			= {};
+
+    for ( let key of key_order ) {
+	ordered_input[ key ]		= input[ key ];
+    }
+
+    return encode( ordered_input );
 }
 
 export function hash ( bytes ) {
@@ -17,7 +30,7 @@ export function hash ( bytes ) {
 }
 
 
-const key_order				= [
+const ZOME_CALL_KEY_ORDER		= [
     "provenance",
     "cell_id",
     "zome_name",
@@ -29,13 +42,7 @@ const key_order				= [
 ];
 
 export function serializeZomeCall ( zome_call ) {
-    const ordered_zome_call		= {};
-
-    for ( let key of key_order ) {
-	ordered_zome_call[ key ]	= zome_call[ key ];
-    }
-
-    return encode( ordered_zome_call );
+    return serializeKeyOrder( zome_call, ZOME_CALL_KEY_ORDER );
 }
 
 export function hashZomeCall ( zome_call ) {
@@ -47,6 +54,7 @@ export function hashZomeCall ( zome_call ) {
 
 export default {
     serialize,
+    serializeKeyOrder,
     hash,
     serializeZomeCall,
     hashZomeCall,

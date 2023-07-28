@@ -3,14 +3,37 @@
 
 # API Reference
 
-### `serialize( input )`
-Serialize any input using msgpack encoding with sort keys enabled
+### `serialize( input, key_order )`
+Serialize any input using msgpack encoding
+
+- `input` - **(required)** any input that can be msgpack'ed
+- `key_order` - **(optional)** a list of ordered keys
+  - default to use msgpack sort keys
 
 Returns `Uint8Array`
 
 Example
 ```js
 const bytes = serialize( "Hello world" );
+```
+
+
+### `serializeKeyOrder( input, key_order )`
+Serialize any input using msgpack encoding with sort keys enabled
+
+- `input` - **(required)** any input that can be msgpack'ed
+- `key_order` - **(required)** a list of ordered keys
+
+Returns `Uint8Array`
+
+Example
+```js
+const bytes = serializeKeyOrder({
+    "3": null,
+    "two": null,
+    "one": null,
+    "4": null,
+}, [ "one", "two", "3", "4" ] );
 ```
 
 
@@ -74,6 +97,7 @@ const digest = hashZomeCall( zome_call_request );
 ```javascript
 {
     serialize,
+    serializeKeyOrder,
     hash,
     serializeZomeCall,
     hashZomeCall,

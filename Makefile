@@ -9,6 +9,13 @@ node_modules:		package-lock.json
 	touch $@
 build:			node_modules
 
+use-local-holo-hash:
+	cd tests; npm uninstall @spartan-hc/holo-hash
+	cd tests; npm install --save-dev ../../holo-hash-js/
+use-npm-holo-hash:
+	cd tests; npm uninstall @spartan-hc/holo-hash
+	cd tests; npm install --save-dev @spartan-hc/holo-hash
+
 
 MOCHA_OPTS		= -t 15000
 #

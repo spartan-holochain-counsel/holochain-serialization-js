@@ -7,11 +7,9 @@ import { expect }			from 'chai';
 
 import { encode, decode }		from '@msgpack/msgpack';
 import { hashZomeCall }			from '@holochain/serialization';
-import HoloHashLib			from '@whi/holo-hash';
-
-const { HoloHash,
-	DnaHash,
-	AgentPubKey }			= HoloHashLib;
+import { HoloHash,
+	 DnaHash,
+	 AgentPubKey }			from '@spartan-hc/holo-hash';
 
 import { expect_reject }		from './utils.js';
 import lib				from '../../src/index.js';
@@ -49,6 +47,11 @@ function connection_tests () {
 	log.normal("WASM Hash 2:", Buffer.from(hash_2).toString("hex") );
 
 	expect( hash_1			).to.deep.equal( hash_2 );
+    });
+
+    it("should serialize using given key order", async function () {
+	this.skip();
+	throw new Error('Not implemented');
     });
 }
 
