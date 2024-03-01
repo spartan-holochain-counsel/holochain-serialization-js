@@ -1,6 +1,6 @@
 {
   "name": "@spartan-hc/holochain-serialization",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "A Javascript library for signing Holochain zome call input",
   "type": "module",
   "main": "lib/index.js",
