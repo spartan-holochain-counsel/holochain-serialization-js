@@ -3,7 +3,9 @@ import { encode }			from '@msgpack/msgpack';
 import { blake2b }			from './blake2b.js';
 
 
-export function serialize ( input, key_order ) {
+type Input = Record<string, any>;
+
+export function serialize ( input: any, key_order?: Array<string> ) {
     if ( key_order )
 	return serializeKeyOrder( input, key_order );
     else
@@ -12,8 +14,8 @@ export function serialize ( input, key_order ) {
 	});
 }
 
-export function serializeKeyOrder ( input, key_order ) {
-    const ordered_input			= {};
+export function serializeKeyOrder ( input: Input, key_order: Array<string> ) {
+    const ordered_input : Input		= {};
 
     for ( let key of key_order ) {
 	ordered_input[ key ]		= input[ key ];
@@ -22,7 +24,7 @@ export function serializeKeyOrder ( input, key_order ) {
     return encode( ordered_input );
 }
 
-export function hash ( bytes ) {
+export function hash ( bytes: Uint8Array ) {
     if ( !(bytes instanceof Uint8Array) )
 	bytes				= serialize( bytes );
 
@@ -41,11 +43,11 @@ const ZOME_CALL_KEY_ORDER		= [
     "expires_at",
 ];
 
-export function serializeZomeCall ( zome_call ) {
+export function serializeZomeCall ( zome_call: any ) {
     return serializeKeyOrder( zome_call, ZOME_CALL_KEY_ORDER );
 }
 
-export function hashZomeCall ( zome_call ) {
+export function hashZomeCall ( zome_call: any ) {
     const bytes				= serializeZomeCall( zome_call );
 
     return hash( bytes );

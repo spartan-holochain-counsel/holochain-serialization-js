@@ -7,7 +7,7 @@
 // 64-bit unsigned addition
 // Sets v[a,a+1] += v[b,b+1]
 // v should be a Uint32Array
-function ADD64AA (v, a, b) {
+function ADD64AA (v: any, a: any, b: any) {
     const o0 = v[a] + v[b]
     let o1 = v[a + 1] + v[b + 1]
     if (o0 >= 0x100000000) {
@@ -20,7 +20,7 @@ function ADD64AA (v, a, b) {
 // 64-bit unsigned addition
 // Sets v[a,a+1] += b
 // b0 is the low 32 bits of b, b1 represents the high 32 bits
-function ADD64AC (v, a, b0, b1) {
+function ADD64AC (v: any, a: any, b0: any, b1: any) {
     let o0 = v[a] + b0
     if (b0 < 0) {
 	o0 += 0x100000000
@@ -34,13 +34,13 @@ function ADD64AC (v, a, b0, b1) {
 }
 
 // Little-endian byte access
-function B2B_GET32 (arr, i) {
+function B2B_GET32 (arr: any, i: any) {
     return arr[i] ^ (arr[i + 1] << 8) ^ (arr[i + 2] << 16) ^ (arr[i + 3] << 24)
 }
 
 // G Mixing function
 // The ROTRs are inlined for speed
-function B2B_G (a, b, c, d, ix, iy) {
+function B2B_G (a: any, b: any, c: any, d: any, ix: any, iy: any) {
     const x0 = m[ix]
     const x1 = m[ix + 1]
     const y0 = m[iy]
@@ -113,7 +113,7 @@ const SIGMA82 = new Uint8Array(
 // Note we're representing 16 uint64s as 32 uint32s
 const v = new Uint32Array(32)
 const m = new Uint32Array(32)
-function blake2bCompress (ctx, last) {
+function blake2bCompress (ctx: any, last: any) {
     let i = 0
 
     // init work variables
@@ -158,7 +158,7 @@ function blake2bCompress (ctx, last) {
 }
 
 // reusable parameterBlock
-const parameterBlock = (new Uint8Array( 60 )).fill();
+const parameterBlock = (new Uint8Array( 60 )).fill(0);
 
 
 // Creates a BLAKE2b hashing context
@@ -166,7 +166,7 @@ const parameterBlock = (new Uint8Array( 60 )).fill();
 // Takes an optional Uint8Array key
 // Takes an optinal Uint8Array salt
 // Takes an optinal Uint8Array personal
-function blake2bInit (outlen, key, salt, personal) {
+function blake2bInit (outlen: any, key: any, salt: any, personal: any) {
     if (outlen === 0 || outlen > 64) {
 	throw new Error('Illegal output length, expected 0 < length <= 64')
     }
@@ -215,7 +215,7 @@ function blake2bInit (outlen, key, salt, personal) {
 
 // Updates a BLAKE2b streaming hash
 // Requires hash context and Uint8Array (byte array)
-function blake2bUpdate (ctx, input) {
+function blake2bUpdate (ctx: any, input: any) {
     for (let i = 0; i < input.length; i++) {
 	if (ctx.c === 128) {
 	    // buffer full ?
@@ -229,7 +229,7 @@ function blake2bUpdate (ctx, input) {
 
 // Completes a BLAKE2b streaming hash
 // Returns a Uint8Array containing the message digest
-function blake2bFinal (ctx) {
+function blake2bFinal (ctx: any) {
     ctx.t += ctx.c // mark last block offset
 
     while (ctx.c < 128) {
@@ -250,7 +250,7 @@ function blake2bFinal (ctx) {
 const ERROR_MSG_INPUT = 'Input must be an string, Buffer or Uint8Array'
 
 // For convenience, let people hash a string, not just a Uint8Array
-export function normalizeInput (input) {
+export function normalizeInput (input: any) {
     let ret
     if (input instanceof Uint8Array) {
 	ret = input
@@ -273,7 +273,7 @@ export function normalizeInput (input) {
 // - outlen - optional output length in bytes, default 64
 // - salt - optional salt bytes, string, Buffer or Uint8Array
 // - personal - optional personal bytes, string, Buffer or Uint8Array
-export function blake2b (input, key, outlen, salt, personal) {
+export function blake2b (input: any, key?: any, outlen?: any, salt?: any, personal?: any) {
     // preprocess inputs
     outlen = outlen || 32
     input = normalizeInput(input)

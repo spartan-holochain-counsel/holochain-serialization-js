@@ -1,3 +1,24 @@
+ENTRY_POINT		= lib/index.js
+BUILD_DEPS		= node_modules $(ENTRY_POINT) Makefile tsconfig.json
+TSC_OPTIONS		= -t es2022 -m es2022	\
+	--moduleResolution node			\
+	--esModuleInterop			\
+	--strictNullChecks			\
+	--strictPropertyInitialization		\
+	-d --sourceMap
+
+
+#
+# Building
+#
+tsconfig.json:
+	npx tsc --init $(TSC_OPTIONS) --outDir lib
+$(ENTRY_POINT):		src/*.ts Makefile
+	rm -f lib/*.js
+	npx tsc $(TSC_OPTIONS) --strict --outDir lib src/index.ts
+
+
+
 #
 # Project
 #
@@ -17,19 +38,18 @@ use-npm-holo-hash:
 	cd tests; npm install --save-dev @spartan-hc/holo-hash
 
 
-MOCHA_OPTS		= -t 15000
 #
 # Testing
 #
-test:				test-integration
-test-debug:			test-integration-debug
+DEBUG_LEVEL	       ?= warn
+TEST_ENV_VARS		= LOG_LEVEL=$(DEBUG_LEVEL)
+MOCHA_OPTS		= -n enable-source-maps -t 15000
 
-test-integration:		build
-	LOG_LEVEL=warn npx mocha $(MOCHA_OPTS) ./tests/integration
-test-integration-debug:		build
-	LOG_LEVEL=trace npx mocha $(MOCHA_OPTS) ./tests/integration
-test-integration-debug-%:	build
-	LOG_LEVEL=trace npx mocha $(MOCHA_OPTS) ./tests/integration/test_$*.js
+test:
+	make -s test-integration
+
+test-integration:	$(BUILD_DEPS)
+	$(TEST_ENV_VARS) npx mocha $(MOCHA_OPTS) tests/integration/test_basic.js
 
 test-server:
 	python3 -m http.server 8765

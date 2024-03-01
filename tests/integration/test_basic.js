@@ -12,7 +12,7 @@ import { HoloHash,
 	 AgentPubKey }			from '@spartan-hc/holo-hash';
 
 import { expect_reject }		from './utils.js';
-import lib				from '../../src/index.js';
+import lib				from '../../lib/index.js';
 
 
 let conn;
